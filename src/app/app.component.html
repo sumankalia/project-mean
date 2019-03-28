@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <app-logo></app-logo>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <app-nav></app-nav>
+    </div>
+  </div>
+  <div class="row mt-2">
+    <div class="col-md-3">
+      <app-sidebar></app-sidebar>
+    </div>
+    <div class="col-md-9 body-gray">
+      <app-body
+        [user]="user"
+        [departName]="departName"
+        (onSleep)="sleep($event)"
+        (onStatus)="status($event)"
+        (onDetails)="test = $event"
+      ></app-body>
+    </div>
+  </div>
+  <div class="row mt-2">
+    <div class="col-md-12">
+      <app-footer></app-footer>
+    </div>
+  </div>
+</div>
