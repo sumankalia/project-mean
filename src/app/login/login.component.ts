@@ -9,7 +9,10 @@ import { Component, OnInit } from '@angular/core';
 
 export class LoginComponent implements OnInit {
 constructor() { }
-
+form:any;
+test(form){
+  console.log(form.value);
+}
   ngOnInit() {
   }
 }

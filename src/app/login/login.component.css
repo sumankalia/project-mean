@@ -205,4 +205,10 @@ footer .container .text-muted {
   padding-left: 15px;
 } */
 
+input.ng-touched.ng-invalid{
+    border:solid red 2px; 
+}
 
+p{
+    color:black;
+}

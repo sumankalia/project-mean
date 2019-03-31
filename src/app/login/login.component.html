@@ -35,7 +35,7 @@
 
 <div id="main">
     <div class="main login">
-        <form action="" method="post">
+        <form action="" method="post" #form="ngForm" (ngSubmit)=test(form)>
 
             <h1>
                 Login
@@ -45,21 +45,24 @@
 
                 <p>
                     <label for="email">EMAIL ADDRESS</label>
-                    <input type="text" name="email" placeholder="" />
+                    <input type="text" name="email" [(ngModel)]="email" placeholder="" required />
+                    <p>{{email}}<p>
                 </p>
                 <p>
                     <label for="password">PASSWORD</label>
-                    <input type="password" name="password" placeholder="" />
+                    <input type="password" name="password" [(ngModel)]="password" placeholder="" required/>
+                <p>{{password}}<p>
                 </p>
 
             </div>
 
             <p class="p-container">
-                <input type="button" class="btn btn-primary "  value="Login">
+                <input type="submit" class="btn btn-primary" [disabled]="!form.valid"   value="Login">
             </p>
         </form>
     </div>
 </div>
+<p>{{form.value| json}}</p>
 
 
 </body>

@@ -21,6 +21,7 @@ import { AdddepartmentComponent } from './department/adddepartment/adddepartment
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { FormControl, FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -47,7 +48,9 @@ import { FormControl, FormsModule } from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     RouterModule.forRoot(appRoutes),
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
