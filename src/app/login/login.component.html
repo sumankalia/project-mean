@@ -45,14 +45,14 @@
 
                 <p>
                     <label for="email">EMAIL ADDRESS</label>
-                    <input type="text" name="email" [(ngModel)]="email" placeholder="" required />
-                    <p>{{email}}<p>
-                </p>
+                    <input type="text" name="email" ngModel #email="ngModel" placeholder="" required />
+                    <div class="alert alert-danger" *ngIf="email.touched && !email.valid">Email is required!</div>
+                <p>
                 <p>
                     <label for="password">PASSWORD</label>
-                    <input type="password" name="password" [(ngModel)]="password" placeholder="" required/>
-                <p>{{password}}<p>
-                </p>
+                    <input type="password" name="password" ngModel #password="ngModel" placeholder="" required/>
+                    <div class="alert alert-danger" *ngIf="password.touched && !password.valid">Password is required!</div>
+                <p>
 
             </div>
 
@@ -62,7 +62,7 @@
         </form>
     </div>
 </div>
-<p>{{form.value| json}}</p>
+
 
 
 </body>
