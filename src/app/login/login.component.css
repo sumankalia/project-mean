@@ -201,3 +201,7 @@ input.ng-touched.ng-invalid{
 p{
     color:black;
 }
+    
+.help-block{
+    color:  red;
+}

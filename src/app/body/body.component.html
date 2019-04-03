@@ -1,14 +1,25 @@
 <div class="container-fluid body-gray" >
     <div class="row" >
         <div class="col">
+                
             <h3>Welcome {{name}}</h3>
             <p>Welcome to {{departName}} department</p>
-            <input type="text" value="name" [ngModel]="name" (ngModelChange)="name= $event"/>
+            <input type="text" name="name" value="name" [ngModel]="name" (ngModelChange)="name= $event"/>
             <br/>
+            <form [formGroup]="bodyForm" method="post" action="" >
             <button class="btn btn-danger mt-2" (click)="sleepEvent($event)">Click Me</button>
             <button class="btn btn-primary mt-2 ml-2" (click)="myfun()">Details</button>
-            <button class="btn btn-primary mt-2 ml-2" (click)=details()>Click here</button>
-   <router-outlet></router-outlet>
+            <button class="btn btn-primary mt-2 ml-2" (click)=statusEvent()>Click here</button>
+            <div formArrayName="suggestions">
+                    <button class="btn btn-success mt-2 ml-2" (click)="addSuggestion()">Add Suggestions</button>
+            <div class="form-group"
+            *ngFor="let suggestionsControl of bodyForm.get('suggestions').controls; let i=index ">
+                <input type="text" class="form-control" [formControlName]="i">
+            </div>
+                </div>
+        </form>   
+            <router-outlet></router-outlet>
+                 
         </div>
     </div>
     <div class="row mt-2">
@@ -33,11 +44,7 @@
                 </table>
         </div>
     </div>
-    <div class="row" >
-        <div class="col-md">
-        
-        </div>
-    </div>
+
     </div>
 
 

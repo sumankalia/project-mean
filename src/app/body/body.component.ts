@@ -1,4 +1,5 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core'
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core'
+import { FormGroup, FormArray, FormControl, Validators } from '@angular/forms';
 
 @Component({
     selector: 'app-body',
@@ -8,9 +9,13 @@ import { Component, Input, Output, EventEmitter } from '@angular/core'
 
 export class BodyComponent{
     res= true;
-
+    bodyForm: FormGroup;
 constructor(){} 
-
+ngOnInit(){
+this.bodyForm= new FormGroup({
+    'suggestions': new FormArray([])
+})
+}
 
 
 myfun() {
@@ -30,10 +35,13 @@ sleepEvent(e){
 }
 @Output() onDetails= new EventEmitter();
 details(e){
-     this.onDetails.emit("test stmt for body ");
+     this.onDetails.emit(e);
 }
  
-
+addSuggestion(){
+    const control= new FormControl(null, Validators.required);
+     (<FormArray>this.bodyForm.get('suggestions')).push(control);
+}
 
 
 }

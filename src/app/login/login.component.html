@@ -1,69 +1,90 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-</head>
-
-<body>
-
+  <body>
     <div class="container mt-3 ">
-        <div class="row">
-            <!-- <div class="col-md-12"> -->
-                    <!-- <nav class="navbar" id="nav_bar" role="navigation"> -->
-                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
-                            <ul class="nav navbar-nav navbar-right">
-                                <li style="padding-right: 50px;">
-                                    <h2 class="reg-div">
-                                        <a href="/">
-                                            Login
-                                        </a>
-                                    </h2>
-
-                                </li>
-                            </ul>
-                        </div>
-
-                    <!-- </nav> -->
-                <!-- </div> -->
-
+      <div class="row">
+        <!-- <div class="col-md-12"> -->
+        <!-- <nav class="navbar" id="nav_bar" role="navigation"> -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right">
+            <li style="padding-right: 50px;">
+              <h2 class="reg-div">
+                <a href="/">
+                  Login
+                </a>
+              </h2>
+            </li>
+          </ul>
         </div>
+
+        <!-- </nav> -->
+        <!-- </div> -->
+      </div>
     </div>
 
-<div id="main">
-    <div class="main login">
-        <form action="" method="post" #form="ngForm" (ngSubmit)=test(form)>
+    <div id="main">
+      <div class="main login">
+        <form action="" method="post" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <h1>
+            Login
+          </h1>
 
-            <h1>
-                Login
-            </h1>
-
-            <div class="inset">
-
-                <p>
-                    <label for="email">EMAIL ADDRESS</label>
-                    <input type="text" name="email" ngModel #email="ngModel" placeholder="" required />
-                    <div class="alert alert-danger" *ngIf="email.touched && !email.valid">Email is required!</div>
-                <p>
-                <p>
-                    <label for="password">PASSWORD</label>
-                    <input type="password" name="password" ngModel #password="ngModel" placeholder="" required/>
-                    <div class="alert alert-danger" *ngIf="password.touched && !password.valid">Password is required!</div>
-                <p>
-
-            </div>
-
-            <p class="p-container">
-                <input type="submit" class="btn btn-primary" [disabled]="!form.valid"   value="Login">
+          <div class="inset">
+            <p>
+              <label for="email">EMAIL ADDRESS</label>
+              <input
+                type="text"
+                placeholder=""
+                formControlName="email"
+              />
+              <span class="help-block"
+              *ngIf="!loginForm.get('email').valid && loginForm.get('email').dirty "
+            >
+              Enter a valid Email!
+        </span>
             </p>
+
+            
+            <p></p>
+            <p>
+              <label for="password">PASSWORD</label>
+              <input
+                type="password"
+                placeholder=""
+                formControlName="password"
+              />
+              <span class="help-block"
+              *ngIf="!loginForm.get('password').valid 
+              && loginForm.get('password').dirty">
+              Password must be atleast 6 characters!
+        </span>
+            </p>
+
+           
+            <p></p>
+          </div>
+
+          <p class="p-container">
+            <input
+              type="submit"
+              class="btn btn-primary"
+              [disabled]="!loginForm.valid"
+              value="Login"
+            />
+          </p>
+          <div class="row">
+              <div class="col-md">
+                  <p>Email is {{loginForm.get('email').value}}</p>
+                  <p>Password is {{loginForm.get('password').value}}</p>
+              </div>
+          </div>
         </form>
+      </div>
     </div>
-</div>
-
-
-
-</body>
+  </body>
 </html>

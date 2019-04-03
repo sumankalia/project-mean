@@ -1,79 +1,189 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-</head>
-
-<body>
-
+  <body>
     <div class="container mt-3">
-        <div class="row">
-            <!-- <div class="col-md-12"> -->
-                    <!-- <nav class="navbar" id="nav_bar" role="navigation"> -->
-                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
-                            <ul class="nav navbar-nav navbar-right">
-                                <li style="padding-right: 50px;">
-                                    <h2 class="reg-div">
-                                        <a href="/">
-                                            Login
-                                        </a>
-                                    </h2>
-
-                                </li>
-                            </ul>
-                        </div>
-
-                    <!-- </nav> -->
-                <!-- </div> -->
-
+      <div class="row">
+        <!-- <div class="col-md-12"> -->
+        <!-- <nav class="navbar" id="nav_bar" role="navigation"> -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right">
+            <li style="padding-right: 50px;">
+              <h2 class="reg-div">
+                <a href="/">
+                  Login
+                </a>
+              </h2>
+            </li>
+          </ul>
         </div>
+
+        <!-- </nav> -->
+        <!-- </div> -->
+      </div>
     </div>
 
-<div id="main" class="mb-3" >
-    <div class="main login">
-        <form action="" method="post" [formGroup]="registerForm" (ngSubmit)="registerSubmit()">
+    <div id="main" class="mb-3">
+      <div class="main login">
+        <form
+          action=""
+          method="post"
+          [formGroup]="registerForm"
+          (ngSubmit)="registerSubmit()"
+        >
+          <h1>
+            Register
+          </h1>
 
-            <h1>
-                Register
-            </h1>
-
-            <div class="inset">
-                <p>
-                    <label for="firstname">First Name</label>
-                    <input type="text" name="firstname" formControlName="firstName"  placeholder=""  />
-                <p>
-                    <!-- <div class="alert alert-danger" *ngIf="firstname.touched && !firstname.valid">First name is required</div> -->
-                <p>
-                    <label for="lastname">Last Name</label>
-                    <input type="text" name="lastname" formControlName="lastname" placeholder="" />
-                </p>
-                <p>
-                    <label for="email">Email Address</label>
-                    <input type="text" name="email" formControlName="email" placeholder="" />
-                </p>
-                <p>
-                    <label for="password">Password</label>
-                    <input type="password" name="password" formControlName="password" placeholder=""  />
-                </p>
-                <p>
-                    <label for="password">Confirm Password</label>
-                    <input type="password" name="password" formControlName="confirmpassword" placeholder="" />
-                </p>
-
-            </div>
-
-            <p class="p-container">
-                <input type="submit" class="btn btn-primary"  value="Register"  >
+          <div class="inset">
+            <p>
+              <label for="firstname">First Name</label>
+              <input
+                type="text"
+                name="firstname"
+                formControlName="firstName"
+                placeholder=""
+              />
+              <span
+                class="help-block"
+                *ngIf="
+                  !registerForm.get('firstName').valid &&
+                  registerForm.get('firstName').touched
+                "
+              >
+                Please enter a First Name!
+              </span>
             </p>
+            <!-- <div class="alert alert-danger" *ngIf="firstname.touched && !firstname.valid">First name is required</div> -->
+
+            <p>
+              <label for="lastname">Last Name</label>
+              <input
+                type="text"
+                name="lastname"
+                formControlName="lastname"
+                placeholder=""
+              />
+              <span
+                class="help-block"
+                *ngIf="
+                  !registerForm.get('lastname').valid &&
+                  registerForm.get('lastname').touched
+                "
+              >
+                Please enter a Last Name!
+              </span>
+            </p>
+
+            <p></p>
+            <p>
+              <label for="email">Email Address</label>
+              <input
+                type="text"
+                name="email"
+                formControlName="email"
+                placeholder=""
+              />
+              <span
+                class="help-block"
+                *ngIf="
+                  !registerForm.get('email').valid &&
+                  registerForm.get('email').dirty
+                "
+              >
+                Please enter a valid Email!
+              </span>
+            </p>
+
+            <p></p>
+            <p>
+              <label for="gender"
+                >Gender
+                <div
+                  class="form-check form-check-inline gender"
+                  *ngFor="let gender of genders"
+                >
+                  <input
+                    type="radio"
+                    formControlName="gender"
+                    [value]="gender"
+                  />{{ gender }}
+                </div>
+              </label>
+            </p>
+            <p>
+              <label for="city">Select City</label>
+              <select
+                class="form-control"
+                [value]="city"
+                formControlName="city"
+              >
+                <option selected disabled>...Please select...</option>
+                <option *ngFor="let city of cities">{{ city }}</option>
+              </select>
+            </p>
+            <p id="password">
+              <label for="password">Password</label>
+              <input
+                type="password"
+                name="password"
+                formControlName="password"
+                placeholder=""
+              />
+              <span
+                class="help-block"
+                *ngIf="
+                  !registerForm.get('password').valid &&
+                  registerForm.get('password').dirty
+                "
+              >
+                Password must be atleast 6 characters!
+              </span>
+            </p>
+            <p>
+              <label for="confirmpassword">Confirm Password</label>
+              <input
+                type="password"
+                name="confirmpassword"
+                formControlName="confirmpassword"
+                placeholder=""
+              />
+              <span
+                class="help-block"
+                *ngIf="
+                  registerForm.get('password').value !=
+                    registerForm.get('confirmpassword').value &&
+                  registerForm.get('confirmpassword').dirty
+                "
+              >
+                Must be equal to password!
+              </span>
+            </p>
+          </div>
+
+          <p class="p-container">
+            <input type="submit" class="btn btn-primary" value="Register" />
+          </p>
+          <div class="row">
+            <div class="col-md">
+              <h3>Details are</h3>
+              <p>
+                Full Name is {{ registerForm.get('firstName').value }}
+                {{ registerForm.get('lastname').value }}
+              </p>
+              <p>Email is {{ registerForm.get('email').value }}</p>
+              <p>Gender is {{ registerForm.get('gender').value }}</p>
+              <p>city is {{ registerForm.get('city').value }}</p>
+              <p>Password is {{ registerForm.get('password').value }}</p>
+              <p>Confirm Password is {{ registerForm.get('confirmpassword').value}}</p>
+            </div>
+          </div>
         </form>
+      </div>
     </div>
-</div>
-
-
-
-</body>
+  </body>
 </html>
