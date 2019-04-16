@@ -29,7 +29,7 @@
 
     <div id="main">
       <div class="main login">
-        <form action="" method="post" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <form action="" method="post" [formGroup]="loginForm">
           <h1>
             Login
           </h1>
@@ -73,16 +73,11 @@
             <input
               type="submit"
               class="btn btn-primary"
+              (click)="onSubmit()"
               [disabled]="!loginForm.valid"
               value="Login"
             />
           </p>
-          <div class="row">
-              <div class="col-md">
-                  <p>Email is {{loginForm.get('email').value}}</p>
-                  <p>Password is {{loginForm.get('password').value}}</p>
-              </div>
-          </div>
         </form>
       </div>
     </div>

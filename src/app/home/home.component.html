@@ -1,7 +1,79 @@
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <h3>Home works!</h3>
-    </div>
+
+              
+          <h3>Welcome {{name}}</h3>
+          <!-- <p>Welcome to {{departName}} department</p> -->
+          <input type="text" name="name" value="name" [ngModel]="name" (ngModelChange)="name= $event"/>
+          <br/>
+          <form [formGroup]="bodyForm" method="post" action="" >
+          <!-- <button class="btn btn-danger mt-2" 
+          (click)="sleepEvent($event)">
+          Click Me
+      </button> -->
+          <button class="btn btn-primary mt-2 ml-2" 
+          (click)="myfun()">
+          Details
+      </button>
+      <button class="btn btn-success mt-2 ml-2" 
+      (click)="fetchUsers()">
+      Users Details
+  </button>
+          <!-- <button class="btn btn-primary mt-2 ml-2" 
+          (click)=statusEvent()>
+          Click here
+      </button> -->
+          <!-- <div formArrayName="suggestions">
+                  <button class="btn btn-success mt-2 ml-2" (click)="addSuggestion()">Add Suggestions</button> -->
+          <div class="form-group" 
+          *ngFor="let suggestionsControl of bodyForm.get('suggestions').controls; let i=index ">
+              <input type="text" class="form-control" [formControlName]="i">
+          </div>
+              <!-- </div> -->
+      </form>   
+      <table class="table userdetails mt-2" border="1"  *ngIf="!rec">
+          <thead class="thead-dark">
+                 <tr>
+                  <th>Name</th>
+                  <th>Gender</th>
+                  <th>Email</th>
+                  <th>City</th>
+                  <th>Password</th>
+                 </tr>
+              </thead>
+              <tbody>
+                 <tr *ngFor= "let userRecord of user" >
+                  <td>{{ userRecord.firstName }} {{ userRecord.lastname }}</td>
+                  <td>{{ userRecord.gender }}</td>
+                  <td>{{ userRecord.email }}</td>
+                  <td>{{ userRecord.city }}</td>
+                  <td>{{ userRecord.password }}</td>
+                  
+                 </tr>
+              </tbody>
+      </table>
+   
+  <div class="row mt-2">
+      <div class="col" >
+              <table class="table userdetails" border="1" *ngIf="!res">
+                  <thead class="thead-dark">
+                         <tr>
+                          <th>User Id</th>
+                          <th>User Name</th>
+                          <th>Age</th>
+                          <th>Mobile</th>
+                         </tr>
+                      </thead>
+                      <tbody>
+                         <tr *ngFor="let emp of users" >
+                          <td>{{emp.userid}}</td>
+                          <td>{{emp.username}}</td>
+                          <td>{{emp.age}}</td>
+                          <td>{{emp.mobile}}</td>
+                         </tr>
+                      </tbody>
+                  </table>
+      </div>
   </div>
-</div>
+
+
+                    
+          

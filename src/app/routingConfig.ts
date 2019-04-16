@@ -11,6 +11,7 @@ import { ViewdepartmentComponent } from './department/viewdepartment/viewdepartm
 import { AdddepartmentComponent } from './department/adddepartment/adddepartment.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
+import { UpdateUserComponent } from './update-user/update-user.component';
 
 
 export const appRoutes: Routes=[
@@ -39,6 +40,10 @@ export const appRoutes: Routes=[
                 component: ViewusersComponent
             }
         ]
+    },
+    {
+        path: 'update-user',
+        component: UpdateUserComponent
     },
     {
         path: 'department',

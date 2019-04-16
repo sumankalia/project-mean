@@ -1,16 +1,57 @@
-<div class="container">
-  <div class="row">
+<div class="container" >
+  <!-- <div class="row">
     <div class="col">
       <button class="btn btn-primary mt-3" routerLink="userdetails">User Details</button>
       <button class="btn btn-primary mt-3 ml-3" routerLink="userprofile">User Profile</button>
       <button class="btn btn-primary mt-3 ml-3" routerLink="viewusers">View all Users</button>
     </div>
-  </div>
+  </div> -->
     <div class="row mt-3">
         <div class="col">
           <!-- <app-userdetails></app-userdetails> -->
           <router-outlet></router-outlet>
         </div>
     </div>
+    <form method="POST" class="form-inline" [formGroup]="userForm" (ngSubmit)="userSubmit()" >
+      <div class="form-group mx-sm-3 mb-2">
+          <label for="user" class="sr-only">Enter a Username</label>
+        <input type="text" class="form-control" name="user" formControlName="user"  placeholder="Username">
+      </div>
+        <span class="help-block" *ngIf="!userForm.get('user').valid && userForm.get('user').touched">
+          Enter a valid User!
+        </span>
+     
+        <button  class="btn btn-success  addUser" (click)="createUser()">Add User</button>
+    <!-- <button  class="btn btn-success mt-2 ml-2" (click)="fetchUser()">View User</button> -->
+  </form>
+
+    <div class="row mt-2" >
+      <div class="col-md-12">
+          <table class="table userdetails mt-2" border="1" >
+              <thead class="thead-dark">
+                     <tr>
+                      <th>User</th>
+                      <th>Update</th>
+                      <th>Delete</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr *ngFor= "let user of register | paginate: { itemsPerPage: 5, currentPage: p }">
+                      <td>{{ user.user }}</td>
+                      <td><button class="btn btn-success"  
+                         (click)="onEdit(user)"><div style="text-align:center">
+                            <fa-icon [icon]="faEdit"></fa-icon>
+                          </div></button></td>
+                      <td><button type="button" class="btn btn-danger" (click)="onDelete(user)" >
+                        <div style="text-align:center">
+                            <fa-icon [icon]="faTrashAlt"></fa-icon>
+                          </div></button></td>
+                     </tr>
+                     <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                  </tbody>
+          </table>
+      </div>
+    </div>
+
   </div>
 

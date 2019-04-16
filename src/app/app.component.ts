@@ -1,39 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = 'project-angular';
   test;
-  user=[
-    {
-        "userid": 101,            
-        "username": "rahul kumar",
-        "age": 25,
-        "mobile":9876655},
-    {
-        "userid":102,
-        "username": "vishal kumar",
-        "age": 25,
-        "mobile": 355665
-    },
-    {
-        "userid": 103,
-        "username": "suman kumar",
-        "age": 25,
-        "mobile": 56588996
-    },
-    {
-        "userid": 104,
-        "username": "ashim",
-        "age": 25,
-        "mobile": 4564564
-    }
-];
-
+  ngOnInit(){}
 sleep(e){
   alert("I am sleeping");
 }

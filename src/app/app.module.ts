@@ -9,6 +9,14 @@ import { FooterComponent } from './footer/footer.component';
 import { appRoutes } from './routingConfig';
 import { RouterModule, Routes } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
+import { FormControl, FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { BootstrapModalModule } from 'ng6-bootstrap-modal';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
+
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { UsersComponent } from './users/users.component';
@@ -20,8 +28,10 @@ import { ViewdepartmentComponent } from './department/viewdepartment/viewdepartm
 import { AdddepartmentComponent } from './department/adddepartment/adddepartment.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
-import { FormControl, FormsModule } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
+import { UserService } from './user.service';
+import { UpdateUserComponent } from './update-user/update-user.component';
+import { AuthService } from './Authentication/auth.service';
+
 
 
 @NgModule({
@@ -42,17 +52,26 @@ import { ReactiveFormsModule } from '@angular/forms';
     ViewdepartmentComponent,
     AdddepartmentComponent,
     HomeComponent,
-    AboutComponent
+    AboutComponent,
+    UpdateUserComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    RouterModule.forRoot(appRoutes),
+    RouterModule.forRoot(appRoutes,  { onSameUrlNavigation: 'ignore' }),
     FormsModule,
-    ReactiveFormsModule
-
+    ReactiveFormsModule,
+    HttpClientModule,
+    NgxPaginationModule,
+    BootstrapModalModule,
+    FontAwesomeModule
   ],
-  providers: [],
+  providers: [UserService,
+             {
+               provide: HTTP_INTERCEPTORS,
+               useClass: AuthService,
+               multi: true
+             }  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,12 @@
+<form method="POST" [formGroup]="userForm" >
+  <div class="row mt-3">
+    <div class="col">
+      <input type="text" class="form-control" name="user" [value]="userForm.get('user').value"  formControlName="user">
+      <span class="help-block" *ngIf="!userForm.get('user').valid && userForm.get('user').touched">
+        Enter a valid User!
+      </span>
+      <button type="button"  class="btn btn-success mt-2 addUser" (click)="onSubmit()">Update User</button>
+  <!-- <button  class="btn btn-success mt-2 ml-2" (click)="fetchUser()">View User</button> -->
+    </div>
+  </div>
+  </form>
